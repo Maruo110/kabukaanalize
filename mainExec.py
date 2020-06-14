@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+import kabukatorikomi
 
 def run_mainExec():
 
     import json, sqlite3, datetime, logging.config, requests
+    import csv
+    import os, glob
+    import shutil
     from config import app_config
-    from dao import tweetdbDao
+    from dao import moduleDao
     from util import utils
     from datetime import datetime
     from logging import getLogger
@@ -21,6 +25,16 @@ def run_mainExec():
     db_connection = sqlite3.connect(app_config.DB_NAME)
     db_cursol = db_connection.cursor()
 
+    csvfiles = glob.glob("./input/*.csv")
+    for filename in csvfiles:
+        logger.info('｜ファイル名: %s', os.path.abspath(filename))
+        meigaraid = os.path.basename(filename).split('_')
+        kabukatorikomi.doExec(db_connection, db_cursol, meigaraid[0], filename)
+
+        shutil.move(os.path.abspath(filename), os.path.dirname(filename) + '/end/' + os.path.basename(filename))
+
+
+
 
     logger.info('｜正常終了')
 
@@ -28,7 +42,6 @@ def run_mainExec():
     db_connection.close()
 
     logger.info('▲▲▲▲▲▲END▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲')
-
 
 
 if __name__ == '__main__':

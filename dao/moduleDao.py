@@ -2,7 +2,12 @@
 
 
 def getInsertSqlStatement(tblNm, colList, insertValues):
-    sql= "INSERT INTO " + tblNm + "(" + colList + ") values(" + insertValues + ")"
+
+    if colList == "":
+        sql= "INSERT INTO " + tblNm + " values(" + insertValues + ")"
+    else:
+        sql= "INSERT INTO " + tblNm + "(" + colList + ") values(" + insertValues + ")"
+
     print(sql)
     return sql
 
@@ -20,6 +25,12 @@ def getUpdateSqlStatement(tblNm, setValues, whereValues):
     sql= "UPDATE " + tblNm + " SET " + setValues + " WHERE " + whereValues
     print(sql)
     return sql
+
+
+def insertTbl(conn, cur, tblNm, colList, insertValues):
+    cur.execute(getInsertSqlStatement(tblNm, colList, insertValues))
+    conn.commit()
+
 
 # ===============================================================================================================
 
