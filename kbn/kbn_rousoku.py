@@ -3,6 +3,8 @@ from enum import Enum
 
 class KbnRousoku(Enum):
 
+    BLANK = 0
+
     SMALL_YOUSEN = 1
     SMALL_INSEN = 2
     BIB_YOUSEN = 3
@@ -12,6 +14,16 @@ class KbnRousoku(Enum):
     SITAKAGE_YOUSEN = 7
     SITAKAGE_INSEN = 8
     YORIHIKI_DOUJISEN = 9
+    YOUNO_MARUBOUZU = 10
+    KAGENO_MARUBOUZU = 11
+    YOUNO_YORITUKIBOUZU = 12
+    KAGENO_DAIHIKIBOUZU = 13
+    TONKATI_UWAKAGE_YOUSEN = 14
+    TONKATI_UWAKAGE_INSEN = 15
+    YOUNO_DAIHIKIBOUZU = 16
+    KAGENO_YORITUKIBOUZU = 17
+    KARASAKA_SITAKAGE_YOUSEN = 18
+    KARASAKA_SITAKAGE_INSEN = 19
 
     def __init__(self, params):
         '''

@@ -26,15 +26,13 @@ def run_mainExec():
     db_cursol = db_connection.cursor()
 
     csvfiles = glob.glob("./input/*.csv")
+
     for filename in csvfiles:
         logger.info('｜ファイル名: %s', os.path.abspath(filename))
         meigaraid = os.path.basename(filename).split('_')
         kabukatorikomi.doExec(db_connection, db_cursol, meigaraid[0], filename)
 
-        shutil.move(os.path.abspath(filename), os.path.dirname(filename) + '/end/' + os.path.basename(filename))
-
-
-
+        #shutil.move(os.path.abspath(filename), os.path.dirname(filename) + '/end/' + os.path.basename(filename))
 
     logger.info('｜正常終了')
 
